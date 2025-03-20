@@ -1,0 +1,31 @@
+#indie-hacker-quote {
+  display: none;
+}
+
+/* 홈페이지일 때 */
+html[data-yt-page="home"] {
+  ytd-browse {
+    * {
+      display: none !important;
+    }
+
+    #indie-hacker-quote {
+      display: block !important;
+      color: #fff !important;
+      margin-top: 200px !important;
+      font-size: 60px !important;
+      white-space: pre-wrap !important;
+      padding: 0 40px !important;
+    }
+  }
+
+  #home-page-skeleton {
+    display: none !important;
+  }
+}
+
+html[data-yt-page="watch"] {
+  ytd-watch-next-secondary-results-renderer {
+    display: none !important;
+  }
+}

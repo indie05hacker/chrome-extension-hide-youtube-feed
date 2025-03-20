@@ -1,10 +1,22 @@
 {
-  "name": "Hello Extensions",
-  "description": "Base Level Extension",
+  "name": "Hide Youtube Feed",
+  "description": "This Chrome extension allows users to hide or customize their YouTube feed. It helps eliminate distractions by removing unwanted recommendations, trends, or suggested videos from the YouTube homepage and video watch pages.",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
     "default_popup": "hello.html",
     "default_icon": "hello_extensions.png"
+  },
+  "host_permissions": ["https://www.youtube.com/*"],
+  "permissions": ["webNavigation", "tabs"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "css": ["style.css"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
   }
 }

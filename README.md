@@ -1,1 +1,1 @@
-# chrome-extension-youtube-limit
+# chrome-extension-hide-youtube-feed
