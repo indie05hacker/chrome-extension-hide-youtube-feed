@@ -16,23 +16,34 @@ const QUOTES = [
   "당신의 인생을 사랑하라. 당신의 삶을 즐기라. 후회 없이 살아라. - 오드리 헵번",
   "실패는 성공의 어머니이다. - 토마스 에디슨",
   "오늘 할 수 있는 일을 내일로 미루지 마라. - 벤자민 프랭클린",
-  "꿈을 이루고자 하는 용기만 있다면 모든 꿈을 이룰 수 있다. - 월트 디즈니"
+  "꿈을 이루고자 하는 용기만 있다면 모든 꿈을 이룰 수 있다. - 월트 디즈니",
 ];
 
 const getRandomQuote = () => QUOTES[Math.floor(Math.random() * QUOTES.length)];
 
-const callback = async (url) => {
-  const URL = url;
+const insertQuote = (limit) => {
+  if (limit < 1) {
+    return;
+  }
+
+  const browseElement = document.querySelector("ytd-browse");
+
+  if (browseElement) {
+    browseElement.innerHTML = `<h1 id='indie-hacker-quote'>${getRandomQuote()}</h1>`;
+  } else {
+    setTimeout(() => {
+      insertQuote(--limit);
+    }, 500);
+  }
+};
+
+const callback = async (URL) => {
   const rootElement = document.documentElement;
 
   if (URL === "https://www.youtube.com/") {
     rootElement.setAttribute("data-yt-page", "home");
 
-    const browseElement = document.querySelector("ytd-browse");
-
-    if (browseElement) {
-      browseElement.innerHTML = `<h1 id='indie-hacker-quote'>${getRandomQuote()}</h1>`;
-    }
+    insertQuote(3);
   } else if (URL.includes("youtube.com/watch")) {
     rootElement.setAttribute("data-yt-page", "watch");
   } else {
